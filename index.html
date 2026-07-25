@@ -167,7 +167,7 @@
     .featured h3{font-size:clamp(2.55rem,4.4vw,4.2rem);margin:26px 0 18px;display:flex;align-items:center}
     .featured p{font-size:1.12rem;line-height:1.65;color:var(--muted)}
     .featured-actions{display:flex;gap:11px;flex-wrap:wrap}
-    .stack{display:grid;gap:15px}
+    .stack{display:grid;grid-template-rows:repeat(2,1fr);gap:15px}
     .card{padding:25px}
     .card-top{display:flex;justify-content:space-between;gap:14px;align-items:start}
     .code{font:600 .65rem var(--mono);letter-spacing:.1em;color:var(--cyan);text-transform:uppercase}
@@ -206,13 +206,13 @@
       .hero-grid{grid-template-columns:1.1fr .9fr;gap:48px}
       .visual{min-height:400px}
       .console{inset:18px 0 auto}
-      .rows{grid-template-columns:repeat(3,1fr)}
+      .rows{grid-template-columns:repeat(2,minmax(0,1fr))}
       .row{min-height:84px;justify-content:center;align-items:flex-start;flex-direction:column;gap:7px}
     }
     @media(max-width:1000px){
       .hero-grid,.grid,.about-grid,.cta{grid-template-columns:1fr}
       .visual{max-width:720px;width:100%;margin:auto}
-      .stack{grid-template-columns:repeat(3,1fr)}
+      .stack{grid-template-columns:repeat(2,1fr);grid-template-rows:none}
     }
     @media(max-width:760px){
       .container{width:min(calc(100% - 32px),1180px)}
@@ -289,7 +289,6 @@
                 <span>TESTE FECHADO</span>
               </div>
               <div class="row"><strong>SignallQ PRO</strong><span>DESENVOLVIMENTO</span></div>
-              <div class="row"><strong>Admin · Agente</strong><span>OPERAÇÃO B2B</span></div>
             </div>
           </div>
         </div>
@@ -322,11 +321,6 @@
               <div class="card-top"><span class="code">B2B · Profissionais</span><span class="status future">Em desenvolvimento</span></div>
               <h3>SignallQ PRO</h3>
               <p>Visitas, medições por ambiente, evidências, comparação antes/depois e laudos técnicos para profissionais de redes.</p>
-            </article>
-            <article class="card reveal">
-              <div class="card-top"><span class="code">Operação interna</span><span class="status future">Em construção</span></div>
-              <h3>SignallQ Admin</h3>
-              <p>Configuração, telemetria, versões e acompanhamento operacional do ecossistema.</p>
             </article>
             <article class="card reveal">
               <div class="card-top"><span class="code">B2B · Provedores</span><span class="status future">Validação futura</span></div>
