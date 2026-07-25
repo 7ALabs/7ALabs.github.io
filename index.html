@@ -201,6 +201,14 @@
     .reveal{opacity:0;transform:translateY(20px);transition:.65s}
     .reveal.visible{opacity:1;transform:none}
 
+    @media(min-width:1001px){
+      .hero{min-height:78svh;padding:132px 0 64px}
+      .hero-grid{grid-template-columns:1.1fr .9fr;gap:48px}
+      .visual{min-height:400px}
+      .console{inset:18px 0 auto}
+      .rows{grid-template-columns:repeat(3,1fr)}
+      .row{min-height:84px;justify-content:center;align-items:flex-start;flex-direction:column;gap:7px}
+    }
     @media(max-width:1000px){
       .hero-grid,.grid,.about-grid,.cta{grid-template-columns:1fr}
       .visual{max-width:720px;width:100%;margin:auto}
