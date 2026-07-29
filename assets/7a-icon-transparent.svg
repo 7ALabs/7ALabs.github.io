@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="300 190 700 590">
-  <title>7A</title>
-  <defs>
-    <linearGradient id="g7" x1="339" y1="224" x2="823" y2="705" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0D1B39"/><stop offset=".55" stop-color="#0D1B39"/><stop offset="1" stop-color="#0296FF"/></linearGradient>
-    <linearGradient id="ga" x1="760" y1="379" x2="900" y2="757" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7A2CFC"/><stop offset="1" stop-color="#00ACFE"/></linearGradient>
-  </defs>
-  <path d="M385 224H823L556 705H339L557 321L327 320Z" fill="url(#g7)"/>
-  <path d="M760 379L970 757H845L808 690L589 689L641 596L759 595L699 486Z" fill="url(#ga)"/>
-</svg>
