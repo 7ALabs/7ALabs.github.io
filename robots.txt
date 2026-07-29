@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://7alabs.github.io/sitemap.xml
+Sitemap: https://buildea-labs.github.io/sitemap.xml
