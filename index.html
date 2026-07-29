@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0A0A0A">
-  <meta name="color-scheme" content="dark light">
+  <meta name="color-scheme" content="dark">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="google-site-verification" content="1lDQYG9RvKdH-c44b3ez2ZL33xb7k187rBthK93nfTE">
 
@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
@@ -76,298 +76,242 @@
 
   <style>
     :root{
-      --bg:#0A0A0A;--alt:#141414;--surface:#1A1A1A;--surface-2:#232323;
-      --text:#FFFFFF;--muted:#E6E6E6;--faint:#8A8A8A;
-      --border:rgba(255,255,255,.14);--soft:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.24);
-      --accent:#FFD400;
-      --success:#2ED39A;
-      --shadow:0 24px 64px rgba(0,0,0,.38);
-      --font:"Sora","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      --mono:"Geist Mono","SFMono-Regular",Consolas,monospace;
-      --radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:28px;--radius-pill:999px
-    }
-    html[data-theme="light"]{
-      --bg:#FFFFFF;--alt:#F2F2F2;--surface:#FFFFFF;--surface-2:#F2F2F2;
-      --text:#0A0A0A;--muted:#3A3A3A;--faint:#6B6B6B;
-      --border:rgba(10,10,10,.12);--soft:rgba(10,10,10,.08);--border-strong:rgba(10,10,10,.22);
-      --shadow:0 24px 64px rgba(10,10,10,.12)
+      --color-midnight:#0A0A0A;--color-surface:#1A1A1A;--color-surface-elevated:#232323;
+      --color-accent:#FFD400;
+      --color-text-primary:#FFFFFF;--color-text-secondary:#E6E6E6;--color-text-tertiary:#8A8A8A;
+      --color-border-subtle:rgba(255,255,255,.08);--color-border-default:rgba(255,255,255,.14);
+      --shadow-brand:0 0 48px rgba(255,212,0,.18);
+      --font-sans:"Sora","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --font-mono:"Geist Mono","SFMono-Regular",Consolas,monospace;
+      --radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-pill:999px;
+      --container-max:1200px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}
+    body{margin:0;background:var(--color-midnight);color:var(--color-text-primary);font-family:var(--font-sans);overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     button{font:inherit}
-    .container{width:min(calc(100% - 48px),1180px);margin:auto}
+    h1,h2{margin:0}
+    p{margin:0}
 
-    header{position:fixed;z-index:50;inset:0 0 auto;border-bottom:1px solid transparent;transition:.2s}
-    header.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);border-color:var(--soft);backdrop-filter:blur(18px)}
-    nav{height:88px;display:flex;align-items:center;gap:28px}
-    .logo{display:flex;align-items:center;gap:12px;flex:none}
-    .logo img.mark{display:block;height:36px;width:36px}
-    .logo img.wordmark{display:block;height:20px;width:auto}
-    .logo img.wordmark.on-light,.foot-brand img.wordmark.on-light{display:none}
-    html[data-theme="light"] .logo img.wordmark.on-dark,html[data-theme="light"] .foot-brand img.wordmark.on-dark{display:none}
-    html[data-theme="light"] .logo img.wordmark.on-light,html[data-theme="light"] .foot-brand img.wordmark.on-light{display:block}
-    .links{display:flex;gap:28px;margin-left:auto}
-    .links a{color:var(--muted);font-size:.92rem;font-weight:600}
-    .links a:hover,.foot-links a:hover{color:var(--text)}
-    .actions{display:flex;gap:10px;align-items:center}
-    .icon,.menu{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);cursor:pointer}
-    .menu{display:none}
-    .mobile{display:none;position:fixed;z-index:49;inset:88px 12px auto;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow)}
-    .mobile.open{display:grid}
-    .mobile a{padding:14px 12px;color:var(--muted)}
+    /* Header — full-bleed bar, 72px, translucent blur (fiel ao Header.jsx do design system) */
+    header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(10,10,10,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--color-border-subtle);position:sticky;top:0;z-index:50}
+    .logo{font-weight:700;font-size:1.05rem;color:var(--color-text-primary);letter-spacing:-.01em}
+    nav.primary-nav{display:flex;gap:28px}
+    nav.primary-nav a{color:var(--color-text-secondary);font-size:.875rem}
+    nav.primary-nav a:hover{color:var(--color-text-primary)}
+    .header-cta{height:40px;padding:0 18px;background:var(--color-accent);color:#0A0A0A;border:none;border-radius:var(--radius-sm);font-size:.875rem;font-weight:700;display:inline-flex;align-items:center;cursor:pointer}
+    .menu-btn{display:none;background:none;border:none;color:var(--color-text-primary);font-size:22px;cursor:pointer;padding:4px}
 
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border-radius:var(--radius-sm);border:1px solid transparent;font-weight:700;transition:.18s;cursor:pointer}
-    .btn:hover{transform:translateY(-2px)}
-    .primary{background:var(--accent);color:#0A0A0A;box-shadow:0 12px 34px rgba(255,212,0,.16)}
-    .secondary{background:var(--surface);border-color:var(--border);color:var(--text)}
-    .small{min-height:42px;padding:0 16px}
+    .mobile-menu{display:none;position:fixed;inset:0;background:var(--color-midnight);z-index:60;flex-direction:column;padding:24px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu-close{align-self:flex-end;background:none;border:none;color:var(--color-text-primary);font-size:20px;cursor:pointer}
+    .mobile-menu nav{display:flex;flex-direction:column;gap:20px;margin-top:32px}
+    .mobile-menu nav a{color:var(--color-text-primary);font-size:22px;font-weight:600}
+    .mobile-menu .header-cta{margin-top:32px;align-self:flex-start}
 
-    .hero{min-height:78svh;display:flex;align-items:center;padding:154px 0 88px}
-    .hero-inner{max-width:800px;min-width:0}
-    .overline{font:700 .72rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:11px;margin-bottom:23px}
-    .overline:before{content:"";width:30px;height:1px;background:var(--accent)}
-    h1,h2,h3,p{margin-top:0;overflow-wrap:break-word}
-    h1{font-size:clamp(2.75rem,5.6vw,4.75rem);line-height:1.02;letter-spacing:-.02em;margin-bottom:24px;font-weight:700}
-    h2{font-size:clamp(1.875rem,3.4vw,2.75rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:20px;font-weight:700}
-    .lead{font-size:1.15rem;line-height:1.65;color:var(--muted);max-width:640px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+    /* Hero — 1 coluna esquerda, fiel ao Home.jsx */
+    .hero{max-width:var(--container-max);margin:0 auto;padding:112px 32px 64px;display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+    .overline{font-family:var(--font-sans);font-size:.75rem;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent)}
+    .hero h1{font-size:clamp(2.5rem,5vw,4rem);line-height:1.05;font-weight:700;letter-spacing:-.02em;max-width:760px}
+    .hero .lead{font-size:1.0625rem;line-height:1.65;color:var(--color-text-secondary);max-width:600px}
+    .hero-actions{display:flex;gap:16px;margin-top:4px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;font-size:.9375rem;font-family:var(--font-sans);font-weight:600;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer}
+    .btn-primary{background:var(--color-accent);color:#0A0A0A}
+    .btn-secondary{background:#F2EFE8;color:#0A0A0A;border-color:rgba(10,10,10,.08)}
 
-    section{padding:96px 0}
-    .alt{background:var(--alt);border-block:1px solid var(--soft)}
-    .head{max-width:720px;margin-bottom:44px}
-    .desc{font-size:1.05rem;line-height:1.7;color:var(--muted)}
-    .products-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .card{border:1px solid var(--border);background:var(--surface);border-radius:var(--radius-lg);padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:340px}
-    .status{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:var(--radius-pill);border:1px solid var(--border);color:var(--muted);background:var(--surface-2);font:600 .68rem var(--mono);letter-spacing:.08em;text-transform:uppercase;width:fit-content}
-    .status.live{border-color:rgba(46,211,154,.32);color:var(--success);background:rgba(46,211,154,.08)}
-    .card h3{font-size:1.7rem;margin:20px 0 12px;font-weight:700}
-    .card p{color:var(--muted);line-height:1.6;margin:0;font-size:.98rem}
-    .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    /* Seções — SectionHeader fiel */
+    section{max-width:var(--container-max);margin:0 auto;padding:64px 32px;display:flex;flex-direction:column;gap:32px}
+    .section-header{display:flex;flex-direction:column;gap:20px;max-width:640px}
+    .section-header h2{font-size:clamp(1.875rem,3vw,2.75rem);line-height:1.12;font-weight:630;letter-spacing:-.035em;color:var(--color-text-primary)}
 
-    .principles{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
-    .principle{padding:26px 22px;background:var(--bg);min-height:150px;border-top:2px solid var(--accent)}
-    .principle p{color:var(--muted);line-height:1.55;margin:0;font-size:.94rem}
+    /* Produtos */
+    .products-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+    .product-card{background:var(--color-surface);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:none}
+    .product-card.featured{background:var(--color-surface-elevated);box-shadow:var(--shadow-brand)}
+    .product-thumb{height:120px;border-radius:var(--radius-md);background:var(--color-accent);opacity:.85}
+    .product-head{display:flex;align-items:flex-start;gap:10px}
+    .product-head span.name{flex:1;min-width:0;font-weight:700;font-size:1.125rem;color:var(--color-text-primary);line-height:1.3}
+    .product-status{flex-shrink:0;font-size:.6875rem;font-weight:600;letter-spacing:.04em;padding:2px 10px;border-radius:var(--radius-pill);background:rgba(255,212,0,.14);color:var(--color-accent)}
+    .product-card p{font-size:.875rem;color:var(--color-text-secondary);line-height:1.6}
+    .product-platform{font-family:var(--font-mono);font-size:.75rem;color:var(--color-text-tertiary)}
+    .product-open{align-self:flex-start;margin-top:4px;background:transparent;border:none;color:var(--color-accent);font-family:var(--font-sans);font-weight:600;font-size:.875rem;cursor:pointer}
 
-    .about-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:54px}
-    .about{border:1px solid var(--border);background:var(--surface);border-radius:var(--radius-lg);padding:28px}
-    .about div{padding:0 0 18px;margin-bottom:18px;border-bottom:1px solid var(--soft)}
-    .about div:last-child{border:0;margin:0;padding:0}
-    .about small{display:block;color:var(--faint);font:600 .65rem var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-    .copy p{font-size:1.05rem;color:var(--muted);line-height:1.75}
-    .copy p:first-of-type{color:var(--text);font-size:1.15rem}
+    /* Princípios */
+    .principles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--color-border-subtle);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);overflow:hidden}
+    .principle{background:var(--color-midnight);padding:24px;display:flex;flex-direction:column;gap:8px}
+    .principle h3{margin:0;font-size:15px;font-weight:700;color:var(--color-text-primary)}
+    .principle p{margin:0;font-size:13px;line-height:1.6;color:var(--color-text-secondary)}
 
-    .contact-card{border:1px solid var(--border);background:var(--surface);border-radius:var(--radius-lg);padding:40px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
-    .contact-card a{color:var(--accent);font-weight:600;font-size:1.1rem}
+    /* FAQ */
+    .faq{max-width:760px}
+    .faq-item{border-bottom:1px solid var(--color-border-subtle)}
+    .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;background:none;border:none;color:var(--color-text-primary);font-size:15px;font-weight:600;cursor:pointer;text-align:left;font-family:var(--font-sans)}
+    .faq-q .sign{color:var(--color-text-tertiary);font-size:16px;flex-shrink:0}
+    .faq-a{margin:0 0 18px;color:var(--color-text-secondary);font-size:14px;line-height:1.65;max-width:600px;display:none}
+    .faq-item.open .faq-a{display:block}
+    .faq-a a{color:var(--color-accent)}
 
-    footer{padding:42px 0;border-top:1px solid var(--soft)}
-    .foot{display:flex;justify-content:space-between;gap:30px;align-items:end;flex-wrap:wrap}
-    .foot-brand{display:flex;align-items:center;gap:14px}
-    .foot-brand img.mark{width:40px;height:40px}
-    .foot-brand img.wordmark{height:18px;width:auto}
-    .foot-brand span{display:block;color:var(--faint);font-size:.76rem;margin-top:4px}
-    .foot-links{display:flex;gap:22px;flex-wrap:wrap}
-    .foot-links a{color:var(--muted);font-size:.83rem}
-    .bottom{display:flex;justify-content:space-between;gap:20px;margin-top:32px;padding-top:22px;border-top:1px solid var(--soft);color:var(--faint);font-size:.75rem;flex-wrap:wrap}
-    .reveal{opacity:0;transform:translateY(16px);transition:.6s}
-    .reveal.visible{opacity:1;transform:none}
+    /* Footer — full-bleed, fiel ao Footer.jsx */
+    footer{padding:48px 32px;border-top:1px solid var(--color-border-subtle);display:flex;justify-content:space-between;align-items:center;color:var(--color-text-tertiary);font-size:13px;flex-wrap:wrap;gap:16px}
+    footer nav{display:flex;gap:20px;flex-wrap:wrap}
+    footer nav a{color:var(--color-text-tertiary)}
+    footer nav a:hover{color:var(--color-text-primary)}
 
-    @media(min-width:1200px){
-      .container{width:min(calc(100% - 72px),1200px)}
-    }
-    @media(max-width:1000px){
-      .about-grid{grid-template-columns:1fr}
+    @media(max-width:900px){
       .products-grid{grid-template-columns:1fr}
-      .principles{grid-template-columns:repeat(2,1fr)}
+      .principles-grid{grid-template-columns:repeat(2,1fr)}
     }
     @media(max-width:760px){
-      .container{width:min(calc(100% - 32px),1180px)}
-      nav{height:76px}.logo img.mark{height:32px;width:32px}.logo img.wordmark{height:17px}
-      .mobile{inset:76px 12px auto}
-      .links,.actions .btn{display:none}.menu{display:grid}.hero{padding-top:120px;min-height:auto}
-      .principles{grid-template-columns:1fr}
-      section{padding:72px 0}
-      .foot,.bottom{flex-direction:column;align-items:flex-start}
-    }
-    @media(max-width:520px){
-      .hero-actions .btn{width:100%}
-      .card-actions .btn{width:100%}
+      nav.primary-nav,.header-cta{display:none}
+      .menu-btn{display:block}
+      .hero{padding:88px 24px 48px}
+      section{padding:48px 24px}
+      .principles-grid{grid-template-columns:1fr}
+      footer{padding:32px 24px}
     }
     @media(prefers-reduced-motion:reduce){
-      *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-      .reveal{opacity:1;transform:none}
+      html{scroll-behavior:auto}
     }
   </style>
 </head>
 <body>
-  <header id="header">
-    <nav class="container">
-      <a class="logo" href="#inicio" aria-label="Buildea — início">
-        <img class="mark" src="assets/buildea-icon-dark.svg" alt="">
-        <img class="wordmark on-dark" src="assets/buildea-wordmark-dark.svg" alt="Buildea">
-        <img class="wordmark on-light" src="assets/buildea-wordmark-light.svg" alt="Buildea">
-      </a>
-      <div class="links">
-        <a href="#produtos">Produtos</a>
-        <a href="#sobre">Sobre</a>
-        <a href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-      <div class="actions">
-        <button class="icon" id="theme" aria-label="Alternar tema">◐</button>
-      </div>
-      <button class="menu" id="menu" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  <header>
+    <span class="logo">buildea</span>
+    <nav class="primary-nav">
+      <a href="#produtos">Produtos</a>
+      <a href="#principios">Princípios</a>
+      <a href="#faq">FAQ</a>
     </nav>
+    <a class="header-cta" href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">GitHub</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button>
   </header>
 
-  <div class="mobile" id="mobile">
-    <a href="#produtos">Produtos</a>
-    <a href="#sobre">Sobre</a>
-    <a href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">GitHub</a>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Fechar menu">✕</button>
+    <nav>
+      <a href="#produtos">Produtos</a>
+      <a href="#principios">Princípios</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="header-cta" href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">GitHub</a>
   </div>
 
   <main>
-    <section class="hero" id="inicio">
-      <div class="container hero-inner reveal visible">
-        <div class="overline">Ideas, Built.</div>
-        <h1>Buildea projeta, constrói e opera produtos digitais.</h1>
-        <p class="lead">Transformamos ideias em produtos funcionais, com foco em utilidade real, clareza e execução.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#produtos">Conhecer os produtos</a>
-          <a class="btn secondary" href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">Ver no GitHub</a>
-        </div>
+    <section class="hero" id="inicio" style="padding-bottom:64px">
+      <div class="overline">Ideas, Built.</div>
+      <h1>Buildea projeta, constrói e opera produtos digitais.</h1>
+      <p class="lead">Da ideia ao produto. Do código ao impacto.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#produtos">Ver produtos</a>
+        <a class="btn btn-secondary" href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">Ver no GitHub →</a>
       </div>
     </section>
 
-    <section class="alt" id="produtos">
-      <div class="container">
-        <div class="head reveal">
-          <div class="overline">Produtos</div>
-          <h2>O que construímos</h2>
-          <p class="desc">Poucos produtos, bem mantidos. Cada um valida sua utilidade antes de expandir.</p>
-        </div>
-        <div class="products-grid">
-          <article class="card reveal">
-            <div>
-              <span class="status live">Em teste</span>
-              <h3>SignallQ</h3>
-              <p>Aplicativo Android que mede e explica a qualidade da conexão de internet, Wi-Fi e rede móvel, transformando dados técnicos em diagnósticos claros e ações práticas.</p>
-            </div>
-            <div class="card-actions">
-              <a class="btn primary" href="https://signallq.pages.dev/" target="_blank" rel="noreferrer">Conhecer o SignallQ</a>
-              <a class="btn secondary" href="https://groups.google.com/g/testadores-signallq" target="_blank" rel="noreferrer">Grupo de testadores</a>
-            </div>
-          </article>
-          <article class="card reveal">
-            <div>
-              <span class="status">Em construção</span>
-              <h3>Savro</h3>
-              <p>Aplicativo de finanças pessoais com foco em privacidade, controle local dos dados e uma visão mais clara da vida financeira.</p>
-            </div>
-          </article>
-        </div>
+    <section id="produtos">
+      <div class="section-header">
+        <span class="overline">Produtos</span>
+        <h2>O que construímos</h2>
+      </div>
+      <div class="products-grid">
+        <article class="product-card featured">
+          <div class="product-thumb"></div>
+          <div class="product-head">
+            <span class="name">SignallQ</span>
+            <span class="product-status">Em teste</span>
+          </div>
+          <p>Aplicativo Android que mede e explica a qualidade da conexão de internet, Wi-Fi e rede móvel, transformando dados técnicos em diagnósticos claros e ações práticas.</p>
+          <span class="product-platform">Android</span>
+          <a class="product-open" href="https://signallq.pages.dev/" target="_blank" rel="noreferrer">Open →</a>
+        </article>
+        <article class="product-card">
+          <div class="product-thumb"></div>
+          <div class="product-head">
+            <span class="name">Savro</span>
+            <span class="product-status">Em construção</span>
+          </div>
+          <p>Aplicativo de finanças pessoais com foco em privacidade, controle local dos dados e uma visão mais clara da vida financeira.</p>
+          <span class="product-platform">Android · iOS</span>
+        </article>
       </div>
     </section>
 
     <section id="principios">
-      <div class="container">
-        <div class="head reveal">
-          <div class="overline">Princípios</div>
-          <h2>Como trabalhamos</h2>
-        </div>
-        <div class="principles">
-          <article class="principle reveal"><p>Utilidade antes de complexidade.</p></article>
-          <article class="principle reveal"><p>Produto real antes de discurso.</p></article>
-          <article class="principle reveal"><p>Validação antes de expansão.</p></article>
-          <article class="principle reveal"><p>Privacidade e responsabilidade.</p></article>
-          <article class="principle reveal"><p>Foco em poucos produtos bem mantidos.</p></article>
-        </div>
+      <div class="section-header">
+        <span class="overline">Princípios</span>
+        <h2>Como trabalhamos</h2>
+      </div>
+      <div class="principles-grid">
+        <div class="principle"><h3>Clareza</h3><p>Marcante, nunca à custa de compreensão.</p></div>
+        <div class="principle"><h3>Sem clichê</h3><p>Sem robôs, sem circuitos genéricos.</p></div>
+        <div class="principle"><h3>Poucos elementos</h3><p>Bem executados, nada de excesso.</p></div>
+        <div class="principle"><h3>Movimento com propósito</h3><p>Transição, profundidade, relação.</p></div>
       </div>
     </section>
 
-    <section class="alt" id="sobre">
-      <div class="container about-grid">
-        <aside class="about reveal">
-          <div><small>Marca</small><strong>Buildea</strong></div>
-          <div><small>Nome institucional</small><strong>Buildea Labs</strong></div>
-          <div><small>Base</small><strong>Rio de Janeiro, Brasil</strong></div>
-          <div><small>Assinatura</small><strong>Ideas, Built.</strong></div>
-        </aside>
-        <div class="copy reveal">
-          <div class="overline">Sobre a Buildea</div>
-          <h2>Estrutura enxuta. Responsabilidade direta.</h2>
-          <p>A Buildea é uma organização independente de produtos digitais criada no Rio de Janeiro. Desenvolvemos produtos próprios e usamos tecnologia, automação e inteligência artificial como meios de execução — não como proposta de valor por si só.</p>
-          <a class="btn secondary" href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">Ver organização no GitHub</a>
-        </div>
+    <section id="faq">
+      <div class="section-header">
+        <span class="overline">FAQ</span>
+        <h2>Perguntas frequentes</h2>
       </div>
-    </section>
-
-    <section id="contato">
-      <div class="container">
-        <div class="head reveal">
-          <div class="overline">Contato</div>
-          <h2>Fale com a gente</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q" data-faq><span>O que é a Buildea?</span><span class="sign">+</span></button>
+          <p class="faq-a">Um laboratório de produto que constrói e opera seus próprios produtos digitais, da ideia ao código.</p>
         </div>
-        <div class="contact-card reveal">
-          <p class="desc">Contato institucional:</p>
-          <a href="mailto:buildealabs@gmail.com">buildealabs@gmail.com</a>
+        <div class="faq-item">
+          <button class="faq-q" data-faq><span>A Buildea presta serviço sob demanda?</span><span class="sign">+</span></button>
+          <p class="faq-a">Ainda não. Hoje nosso foco é 100% construir e operar produtos próprios — mas é um caminho que pode se abrir conforme a Buildea cresce.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-faq><span>Como entro em contato?</span><span class="sign">+</span></button>
+          <p class="faq-a">Envie um e-mail para <a href="mailto:buildealabs@gmail.com">buildealabs@gmail.com</a>.</p>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      <div class="foot">
-        <div class="foot-brand">
-          <img class="mark" src="assets/buildea-icon-dark.svg" alt="">
-          <div>
-            <img class="wordmark on-dark" src="assets/buildea-wordmark-dark.svg" alt="Buildea">
-            <img class="wordmark on-light" src="assets/buildea-wordmark-light.svg" alt="Buildea">
-            <span>Ideas, Built.</span>
-          </div>
-        </div>
-        <div class="foot-links">
-          <a href="#produtos">Produtos</a>
-          <a href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="privacy.html">Privacidade</a>
-          <a href="terms.html">Termos</a>
-          <a href="mailto:buildealabs@gmail.com">Contato</a>
-        </div>
-      </div>
-      <div class="bottom"><span>© 2026 Buildea. Todos os direitos reservados.</span><span>Ideas, Built. — produtos digitais próprios, construídos no Rio de Janeiro.</span></div>
-    </div>
+    <span>© Buildea — Ideas, Built.</span>
+    <nav>
+      <a href="https://github.com/buildea-labs" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="mailto:buildealabs@gmail.com">Contato</a>
+      <a href="privacy.html">Privacidade</a>
+      <a href="terms.html">Termos</a>
+    </nav>
   </footer>
 
   <script>
-    const root=document.documentElement;
-    const header=document.getElementById('header');
-    const menu=document.getElementById('menu');
-    const mobile=document.getElementById('mobile');
-    const theme=document.getElementById('theme');
-
-    const onScroll=()=>header.classList.toggle('scrolled',scrollY>18);
-    onScroll();
-    addEventListener('scroll',onScroll,{passive:true});
-
-    menu.addEventListener('click',()=>{
-      const open=mobile.classList.toggle('open');
-      menu.setAttribute('aria-expanded',String(open));
+    const menuBtn = document.getElementById('menuBtn');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      menuBtn.setAttribute('aria-expanded', 'true');
     });
-    mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-      mobile.classList.remove('open');
-      menu.setAttribute('aria-expanded','false');
+    menuClose.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
     }));
 
-    theme.addEventListener('click',()=>{
-      root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';
-      document.querySelector('meta[name="theme-color"]').content=root.dataset.theme==='dark'?'#0A0A0A':'#FFFFFF';
+    document.querySelectorAll('[data-faq]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.sign').textContent = '+';
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.querySelector('.sign').textContent = '−';
+        }
+      });
     });
-
-    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
-    }),{threshold:.1});
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el));
   </script>
 </body>
 </html>
