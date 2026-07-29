@@ -63,8 +63,7 @@
         "foundingLocation": {"@type": "Place", "name": "Rio de Janeiro, Brasil"},
         "sameAs": [
           "https://github.com/buildea-labs",
-          "https://signallq.pages.dev/",
-          "https://play.google.com/store/apps/details?id=io.signallq.app"
+          "https://signallq.pages.dev/"
         ],
         "brand": [
           {"@type": "Brand", "name": "SignallQ", "url": "https://signallq.pages.dev/"},
@@ -126,10 +125,10 @@
     .small{min-height:42px;padding:0 16px}
 
     .hero{min-height:78svh;display:flex;align-items:center;padding:154px 0 88px}
-    .hero-inner{max-width:800px}
+    .hero-inner{max-width:800px;min-width:0}
     .overline{font:700 .72rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:11px;margin-bottom:23px}
     .overline:before{content:"";width:30px;height:1px;background:var(--accent)}
-    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3,p{margin-top:0;overflow-wrap:break-word}
     h1{font-size:clamp(2.75rem,5.6vw,4.75rem);line-height:1.02;letter-spacing:-.02em;margin-bottom:24px;font-weight:700}
     h2{font-size:clamp(1.875rem,3.4vw,2.75rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:20px;font-weight:700}
     .lead{font-size:1.15rem;line-height:1.65;color:var(--muted);max-width:640px}
@@ -256,7 +255,6 @@
             </div>
             <div class="card-actions">
               <a class="btn primary" href="https://signallq.pages.dev/" target="_blank" rel="noreferrer">Conhecer o SignallQ</a>
-              <a class="btn secondary" href="https://play.google.com/store/apps/details?id=io.signallq.app" target="_blank" rel="noreferrer">Ver na Play Store</a>
               <a class="btn secondary" href="https://groups.google.com/g/testadores-signallq" target="_blank" rel="noreferrer">Grupo de testadores</a>
             </div>
           </article>
@@ -311,7 +309,7 @@
           <h2>Fale com a gente</h2>
         </div>
         <div class="contact-card reveal">
-          <p class="desc">Contato institucional temporário:</p>
+          <p class="desc">Contato institucional:</p>
           <a href="mailto:buildealabs@gmail.com">buildealabs@gmail.com</a>
         </div>
       </div>
@@ -324,7 +322,8 @@
         <div class="foot-brand">
           <img class="mark" src="assets/buildea-icon-dark.svg" alt="">
           <div>
-            <img class="wordmark" src="assets/buildea-wordmark-dark.svg" alt="Buildea">
+            <img class="wordmark on-dark" src="assets/buildea-wordmark-dark.svg" alt="Buildea">
+            <img class="wordmark on-light" src="assets/buildea-wordmark-light.svg" alt="Buildea">
             <span>Ideas, Built.</span>
           </div>
         </div>
